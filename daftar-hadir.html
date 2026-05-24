@@ -1,50 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Hadir - PKS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-100 p-4">
+    <div class="max-w-md mx-auto bg-white p-6 rounded-xl shadow-lg mt-10">
+        <h2 class="text-xl font-bold mb-4 text-center">Presensi Peserta</h2>
+        <form id="formPresensi">
+            <input type="text" id="nama" placeholder="Nama Lengkap" required class="w-full p-2 border mb-3 rounded">
+            <input type="text" id="gelar" placeholder="Gelar/Jabatan" class="w-full p-2 border mb-3 rounded">
+            <input type="number" id="nohp" placeholder="Nomor HP" required class="w-full p-2 border mb-3 rounded">
+            <input type="email" id="email" placeholder="Email" required class="w-full p-2 border mb-3 rounded">
+            <select id="wilayah" class="w-full p-2 border mb-3 rounded">
+                <option value="Jawa Tengah">Jawa Tengah</option>
+                <option value="Lainnya">Lainnya</option>
+            </select>
+            <button type="submit" id="submitBtn" class="bg-blue-600 text-white w-full p-2 rounded hover:bg-blue-700">Kirim Daftar Hadir</button>
+        </form>
+    </div>
 
-<form id="formPresensi" class="p-6 bg-white rounded-xl shadow-lg">
-  <input type="text" id="nama" placeholder="Nama Lengkap" required class="w-full p-2 border mb-3 rounded">
-  <input type="text" id="gelar" placeholder="Gelar/Jabatan" class="w-full p-2 border mb-3 rounded">
-  <input type="number" id="nohp" placeholder="Nomor HP" required class="w-full p-2 border mb-3 rounded">
-  <input type="email" id="email" placeholder="Email" required class="w-full p-2 border mb-3 rounded">
-  <select id="wilayah" class="w-full p-2 border mb-3 rounded">
-    <option value="Jawa Tengah">Jawa Tengah</option>
-    <option value="Lainnya">Lainnya</option>
-  </select>
-  <button type="submit" id="submitBtn" class="bg-blue-600 text-white w-full p-2 rounded hover:bg-blue-700">Kirim Daftar Hadir</button>
-</form>
+    <script>
+        document.getElementById('formPresensi').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Mengirim...";
+            btn.disabled = true;
 
-<script>
-  document.getElementById('formPresensi').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.innerText = "Mengirim...";
-    btn.disabled = true;
+            const formData = new URLSearchParams();
+            formData.append('nama', document.getElementById('nama').value);
+            formData.append('gelar', document.getElementById('gelar').value);
+            formData.append('nohp', document.getElementById('nohp').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('wilayah', document.getElementById('wilayah').value);
+            formData.append('instansi', "PKS");
+            formData.append('kehadiran', "Hadir");
 
-    // Menggunakan URLSearchParams agar data dikirim sebagai form standar
-    const formData = new URLSearchParams();
-    formData.append('nama', document.getElementById('nama').value);
-    formData.append('gelar', document.getElementById('gelar').value);
-    formData.append('nohp', document.getElementById('nohp').value);
-    formData.append('email', document.getElementById('email').value);
-    formData.append('wilayah', document.getElementById('wilayah').value);
-    formData.append('instansi', "PKS");
-    formData.append('kehadiran', "Hadir");
-
-    fetch("https://script.google.com/macros/s/AKfycbynx4Sppg_xvj_-QlJwGBlFIIS9UKucG5Cih2as1upgrL1ErSbCspFaFRFjr5pyTdHQ/exec", { 
-      method: "POST",
-      body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-      alert("Data berhasil disimpan!");
-      window.location.href = "index.html"; 
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Error: Pastikan URL /exec sudah benar.");
-      btn.innerText = "Kirim Daftar Hadir";
-      btn.disabled = false;
-    });
-  });
-</script>
+            // TEMPEL URL /EXEC BARU ANDA DI BAWAH INI
+            fetch("https://script.google.com/macros/s/AKfycbynx4Sppg_xvj_-QlJwGBlFIIS9UKucG5Cih2as1upgrL1ErSbCspFaFRFjr5pyTdHQ/exec", { 
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert("Data berhasil disimpan!");
+                window.location.href = "index.html"; 
+            })
+            .catch(err => {
+                alert("Terjadi kesalahan, pastikan URL /exec benar.");
+                btn.innerText = "Kirim Daftar Hadir";
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
