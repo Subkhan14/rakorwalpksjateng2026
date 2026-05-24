@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PKS Jawa Tengah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background 0.5s ease, color 0.3s ease;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .glass-card {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.3s ease;
+    }
+    .dynamic-button {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* VARIANT THEME CONFIGURATIONS (Optimized Legibility) */
+    
+    /* 1. Biru Tua (Default Dark) */
+    body.theme-dark-blue { background: radial-gradient(circle at top right, #0f3460 0%, #0a2540 50%, #021526 100%); color: #ffffff; }
+    body.theme-dark-blue .glass-card { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); }
+    body.theme-dark-blue .sticky-header-bg { background: rgba(10, 37, 64, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    body.theme-dark-blue .dynamic-button { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.1); color: #e2e8f0; }
+    body.theme-dark-blue .dynamic-button:hover { background: rgba(255, 255, 255, 0.12); border-color: #FFCB05; color: #ffffff; box-shadow: 0 0 15px rgba(255, 203, 5, 0.2); }
+    body.theme-dark-blue .title-gradient { background: linear-gradient(to right, #ffffff, #e2e8f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    body.theme-dark-blue .text-muted { color: #94a3b8; }
+
+    /* 2. Putih / Terang Clean */
+    body.theme-white { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); color: #0f172a; }
+    body.theme-white .glass-card { background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(15, 23, 42, 0.12); box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08); }
+    body.theme-white .sticky-header-bg { background: rgba(248, 250, 252, 0.9); border-bottom: 1px solid rgba(15, 23, 42, 0.08); }
+    body.theme-white .dynamic-button { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(15, 23, 42, 0.14); color: #334155; }
+    body.theme-white .dynamic-button:hover { background: #ffffff; border-color: #1e40af; color: #1e40af; box-shadow: 0 10px 20px -3px rgba(30, 64, 175, 0.1); }
+    body.theme-white .title-gradient { background: none; -webkit-text-fill-color: initial; color: #0f172a; }
+    body.theme-white .text-muted { color: #475569; }
+    body.theme-white h2 { color: #0f172a !important; }
+
+    /* 3. Biru Langit / Soft Light */
+    body.theme-light-blue { background: radial-gradient(circle at top, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%); color: #0c4a6e; }
+    body.theme-light-blue .glass-card { background: rgba(255, 255, 255, 0.65); border: 1px solid rgba(2, 132, 199, 0.2); box-shadow: 0 25px 50px -12px rgba(2, 132, 199, 0.1); }
+    body.theme-light-blue .sticky-header-bg { background: rgba(224, 242, 252, 0.9); border-bottom: 1px solid rgba(2, 132, 199, 0.15); }
+    body.theme-light-blue .dynamic-button { background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(2, 132, 199, 0.18); color: #0369a1; }
+    body.theme-light-blue .dynamic-button:hover { background: rgba(255, 255, 255, 0.95); border-color: #0284c7; color: #0369a1; box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.15); }
+    body.theme-light-blue .title-gradient { background: none; -webkit-text-fill-color: initial; color: #0369a1; }
+    body.theme-light-blue .text-muted { color: #075985; }
+    body.theme-light-blue h2 { color: #0c4a6e !important; }
+
+    /* 4. Abu / Dark Grey Premium */
+    body.theme-dark-grey { background: radial-gradient(circle at top left, #334155 0%, #1e293b 60%, #0f172a 100%); color: #f8fafc; }
+    body.theme-dark-grey .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); }
+    body.theme-dark-grey .sticky-header-bg { background: rgba(30, 41, 59, 0.85); border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+    body.theme-dark-grey .dynamic-button { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08); color: #cbd5e1; }
+    body.theme-dark-grey .dynamic-button:hover { background: rgba(255, 255, 255, 0.12); border-color: #38bdf8; color: #ffffff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+    body.theme-dark-grey .title-gradient { background: linear-gradient(to right, #f8fafc, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    body.theme-dark-grey .text-muted { color: #94a3b8; }
+  </style>
+</head>
+<body class="theme-dark-blue min-h-screen flex flex-col items-center justify-start relative selection:bg-amber-400 selection:text-slate-900 pb-12">
+
+  <div id="top-anchor"></div>
+
+  <div class="fixed top-24 right-4 md:top-6 z-50 bg-black/30 backdrop-blur-md p-1.5 rounded-xl border border-white/10 flex flex-col md:flex-row items-center gap-1.5 shadow-lg">
+    <button onclick="changeTheme('theme-white')" title="Tema Terang" class="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-white border border-slate-300 transition-transform hover:scale-110 focus:outline-none"></button>
+    <button onclick="changeTheme('theme-light-blue')" title="Tema Sky Blue" class="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-sky-400 border border-sky-300 transition-transform hover:scale-110 focus:outline-none"></button>
+    <button onclick="changeTheme('theme-dark-blue')" title="Tema Dark Blue" class="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-blue-900 border border-blue-700 transition-transform hover:scale-110 focus:outline-none"></button>
+    <button onclick="changeTheme('theme-dark-grey')" title="Tema Dark Grey" class="w-6 h-6 md:w-7 md:h-7 rounded-lg bg-slate-800 border border-slate-700 transition-transform hover:scale-110 focus:outline-none"></button>
+  </div>
+
+  <header class="sticky top-0 w-full z-40 sticky-header-bg backdrop-blur-md py-4 px-4 shadow-md flex items-center justify-center transition-all duration-300">
+    <div class="w-full max-w-xl flex items-center gap-4">
+      <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-black/5 p-2 border border-white/10 flex-shrink-0 flex items-center justify-center">
+        <img src="https://lh3.googleusercontent.com/d/1rfa98jZz9tGGNiFbtYxmn9ZRQ9DV7D6Z" alt="Logo PU" class="w-full h-full object-contain">
+      </div>
+      <div class="flex-grow text-left">
+        <span class="text-[11px] md:text-[12px] font-bold tracking-wider text-amber-500 uppercase block">BPBPK Jawa Tengah</span>
+        <h3 class="text-xs md:text-sm font-bold tracking-tight uppercase leading-tight title-gradient transition-colors">PENGEMBANGAN KAWASAN STRATEGIS</h3>
+      </div>
+      <div class="hidden sm:flex text-[10px] font-bold bg-black/20 px-2.5 py-1.5 rounded-lg border border-white/5 flex-shrink-0 text-center flex-col justify-center">
+        <span class="text-amber-400">26 MEI</span>
+        <span class="text-muted text-[9px]">2026</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full max-w-xl px-4 md:px-0 mt-6 z-10">
+    <div class="w-full glass-card rounded-[2rem] p-5 md:p-7 flex flex-col shadow-2xl relative">
+      
+      <div class="text-center md:text-left border-b border-white/10 pb-4 mb-4">
+        <h2 class="text-xl md:text-2xl font-extrabold text-white title-gradient leading-snug transition-colors">
+          Sosialisasi Norma, Standar, Prosedur, dan Kriteria (NSPK)
+        </h2>
+        <p class="text-xs md:text-sm text-muted mt-1 transition-colors">Pelaksanaan Kegiatan: Selasa, 26 Mei 2026</p>
+      </div>
+
+      <div class="w-full space-y-3 my-2">
+        <a href="PASTE_LINK_WEB_APP_APPS_SCRIPT_ANDA" target="_blank" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-lg border border-emerald-500/20 group-hover:scale-105 transition">📝</div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">Daftar Hadir</p>
+              <p class="text-[11px] text-muted transition-colors">Isi presensi kehadiran peserta sosialisasi</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </a>
+
+        <a href="PASTE_LINK_ONEDRIVE_MATERI" target="_blank" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-amber-500/10 flex items-center justify-center text-lg border border-amber-500/20 group-hover:scale-105 transition">📂</div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">Materi Paparan</p>
+              <p class="text-[11px] text-muted transition-colors">Unduh berkas materi narasumber</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </a>
+
+        <button onclick="openZoom()" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0 text-left focus:outline-none">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:scale-105 transition flex-shrink-0">
+              <svg class="w-5 h-5 fill-[#2D8CFF] group-hover:fill-amber-500 transition-colors duration-300" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.585 6.907c-.452 0-.815.363-.815.814v8.556c0 .45.363.814.815.814h8.556c.45 0 .814-.363.814-.814V7.721c0-.451-.363-.814-.814-.814H4.585zm10.51 3.208l4.471-2.982c.421-.281.934.02.934.523v10.688c0 .503-.513.804-.934.523l-4.471-2.982v-5.77z"/>
+              </svg>
+            </div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">Link Zoom Meeting</p>
+              <p class="text-[11px] text-muted transition-colors">Klik untuk langsung membuka aplikasi Zoom via ID & Password</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </button>
+        
+        <!-- <a href="PASTE_LINK_TEAMS_MEETING" target="_blank" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-indigo-500/10 flex items-center justify-center text-lg border border-indigo-500/20 group-hover:scale-105 transition">👥</div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">Link Ms. Teams</p>
+              <p class="text-[11px] text-muted transition-colors">Gabung ke ruang rapat daring Microsoft Teams</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </a> -->
+
+        <a href="PASTE_LINK_ONEDRIVE_VBG" target="_blank" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-lg border border-sky-500/20 group-hover:scale-105 transition">🖼️</div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">Virtual Background</p>
+              <p class="text-[11px] text-muted transition-colors">Unduh latar belakang resmi rapat virtual</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </a>
+
+        <a href="PASTE_LINK_ONEDRIVE_DOKUMENTASI" target="_blank" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-rose-500/10 flex items-center justify-center text-lg border border-rose-500/20 group-hover:scale-105 transition">📸</div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">Dokumentasi</p>
+              <p class="text-[11px] text-muted transition-colors">Dokumentasi foto dan visual selama jalannya acara</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </a>
+
+        <a href="PASTE_LINK_ONEDRIVE_RECORDING" target="_blank" class="w-full dynamic-button group py-3.5 px-4 rounded-xl flex justify-between items-center transform hover:-translate-y-0.5 active:translate-y-0">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-lg border border-cyan-500/20 group-hover:scale-105 transition">🎥</div>
+            <div class="text-left">
+              <p class="font-bold text-sm md:text-base group-hover:text-amber-500 transition-colors">File Recording</p>
+              <p class="text-[11px] text-muted transition-colors">Tonton atau unduh rekaman video sosialisasi</p>
+            </div>
+          </div>
+          <span class="text-muted group-hover:text-amber-500 transition-all group-hover:translate-x-1">➜</span>
+        </a>
+      </div>
+
+      <div class="w-full flex items-center justify-center gap-2 my-3">
+        <div class="h-[1px] bg-gradient-to-r from-transparent via-slate-400/20 to-transparent w-full"></div>
+        <span class="text-[9px] tracking-widest uppercase text-muted font-bold whitespace-nowrap transition-colors">Narahubung & Akses</span>
+        <div class="h-[1px] bg-gradient-to-r from-transparent via-slate-400/20 to-transparent w-full"></div>
+      </div>
+
+      <div class="w-full flex flex-row items-center justify-between bg-black/5 p-4 rounded-2xl border border-white/5 gap-4">
+        <div class="flex flex-col space-y-2.5">
+          <p class="text-xs font-semibold text-muted tracking-wide uppercase transition-colors">Panitia:</p>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/628995007786" target="_blank" class="w-11 h-11 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-500 border border-emerald-500/20 flex items-center justify-center transition transform hover:scale-105">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="mailto:lussya.dewi@pu.go.id" class="w-11 h-11 rounded-xl bg-sky-600/10 hover:bg-sky-600/20 text-sky-500 border border-sky-500/20 flex items-center justify-center transition transform hover:scale-105">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center flex-shrink-0 bg-white p-1.5 rounded-xl border border-slate-200 shadow-md">
+          <img id="qrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=https://script.google.com" alt="QR Akses Langsung" class="w-[75px] h-[75px] object-contain">
+          <span class="text-[8px] font-bold text-slate-800 tracking-wider mt-1 uppercase">Akses Scan</span>
+        </div>
+      </div>
+
+      <p class="text-center text-[9px] font-bold text-muted tracking-widest uppercase mt-5 transition-colors">
+        Kementerian PU • © 2026 All Rights Reserved
+      </p>
+
+    </div>
+  </main>
+
+  <div id="bottom-anchor"></div>
+
+  <div class="fixed bottom-4 right-4 flex flex-col space-y-1.5 z-50">
+    <button onclick="scrollToAnchor('top-anchor')" class="w-9 h-9 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white rounded-full shadow-lg flex items-center justify-center font-bold text-xs transition border border-white/10 active:scale-90">▲</button>
+    <button onclick="scrollToAnchor('bottom-anchor')" class="w-9 h-9 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white rounded-full shadow-lg flex items-center justify-center font-bold text-xs transition border border-white/10 active:scale-90">▼</button>
+  </div>
+
+  <script>
+    function scrollToAnchor(elementId) {
+      const targetElement = document.getElementById(elementId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function changeTheme(themeName) {
+      document.body.classList.remove('theme-white', 'theme-light-blue', 'theme-dark-blue', 'theme-dark-grey');
+      document.body.classList.add(themeName);
+      localStorage.setItem('selectedPortalTheme', themeName);
+    }
+
+    // Fungsi Utama Inisialisasi Halaman saat dimuat
+    window.onload = function() {
+      const savedTheme = localStorage.getItem('selectedPortalTheme') || 'theme-dark-blue';
+      changeTheme(savedTheme);
+
+      // Sinkronisasi otomatis QR Code berdasarkan link hosting terkini
+      var currentUrl = window.location.href;
+      var qrImage = document.getElementById('qrCode');
+      if (qrImage) {
+        qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=" + encodeURIComponent(currentUrl);
+      }
+    }; // <-- Tanda kurung penutup diposisikan di sini dengan benar
+
+    // Fungsi Pemicu Aplikasi Zoom (Sudah berdiri sendiri di luar onload)
+    function openZoom() {
+      const meetingId = "5527126946"; 
+      const password  = "BPBPKJTG";   
+
+      // Skema URL khusus untuk langsung memicu aplikasi Zoom terinstall
+      const zoomAppUrl = `zoommtg://zoom.us/join?confno=${meetingId}&pwd=${password}`;
+      
+      // Tautan web standar sebagai cadangan jika aplikasi Zoom belum terinstall
+      const zoomWebUrl = `https://us06web.zoom.us/j/${meetingId}?pwd=${password}`;
+
+      // 1. Picu perangkat untuk membuka aplikasi Zoom internal
+      window.location.href = zoomAppUrl;
+
+      // 2. Deteksi cadangan: Jika dalam 2 detik aplikasi gagal terbuka/tidak ada, lempar ke tab browser baru
+      const start = Date.now();
+      setTimeout(function() {
+        if (Date.now() - start < 2200) {
+          window.open(zoomWebUrl, '_blank');
+        }
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
