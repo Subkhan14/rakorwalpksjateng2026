@@ -1,0 +1,46 @@
+<form id="formPresensi" class="p-6 bg-white rounded-xl shadow-lg">
+  <input type="text" id="nama" placeholder="Nama Lengkap" required class="w-full p-2 border mb-3 rounded">
+  <input type="text" id="gelar" placeholder="Gelar/Jabatan" class="w-full p-2 border mb-3 rounded">
+  <input type="number" id="nohp" placeholder="Nomor HP" required class="w-full p-2 border mb-3 rounded">
+  <input type="email" id="email" placeholder="Email" required class="w-full p-2 border mb-3 rounded">
+  <select id="wilayah" class="w-full p-2 border mb-3 rounded">
+    <option value="Jawa Tengah">Jawa Tengah</option>
+    <option value="Lainnya">Lainnya</option>
+  </select>
+  <button type="submit" id="submitBtn" class="bg-blue-600 text-white w-full p-2 rounded hover:bg-blue-700">Kirim Daftar Hadir</button>
+</form>
+
+<script>
+  document.getElementById('formPresensi').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.innerText = "Mengirim...";
+    btn.disabled = true;
+
+    // Menggunakan URLSearchParams agar data dikirim sebagai form standar
+    const formData = new URLSearchParams();
+    formData.append('nama', document.getElementById('nama').value);
+    formData.append('gelar', document.getElementById('gelar').value);
+    formData.append('nohp', document.getElementById('nohp').value);
+    formData.append('email', document.getElementById('email').value);
+    formData.append('wilayah', document.getElementById('wilayah').value);
+    formData.append('instansi', "PKS");
+    formData.append('kehadiran', "Hadir");
+
+    fetch("https://script.google.com/macros/s/AKfycbynx4Sppg_xvj_-QlJwGBlFIIS9UKucG5Cih2as1upgrL1ErSbCspFaFRFjr5pyTdHQ/exec", { 
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert("Data berhasil disimpan!");
+      window.location.href = "index.html"; 
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Error: Pastikan URL /exec sudah benar.");
+      btn.innerText = "Kirim Daftar Hadir";
+      btn.disabled = false;
+    });
+  });
+</script>
