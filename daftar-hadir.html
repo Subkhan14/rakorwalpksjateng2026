@@ -6,113 +6,71 @@
   <title>Presensi Sosialisasi NSPK Jateng</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #f4f7fa; }
-    .header-box { background: #0a2540; color: white; padding: 20px; text-align: center; }
+    body { background-color: #f4f7fa; font-family: sans-serif; }
+    .header-gradient { background: linear-gradient(180deg, #0a2540 0%, #004b91 100%); }
+    .nav-btn { position: fixed; right: 20px; z-index: 100; cursor: pointer; }
   </style>
 </head>
-<body class="p-4">
+<body class="p-4 md:p-10">
 
-  <div id="formContainer" class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-    <div class="header-box">
+  <div class="nav-btn bottom-20 flex flex-col gap-2">
+    <a href="#top" class="bg-blue-900 text-white p-3 rounded-full shadow-lg">▲</a>
+    <a href="#bottom" class="bg-blue-900 text-white p-3 rounded-full shadow-lg">▼</a>
+  </div>
+
+  <div id="top" class="max-w-2xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+    <div class="header-gradient sticky top-0 z-50 p-6 text-center text-white">
       <h1 class="text-xl font-bold uppercase">SOSIALISASI</h1>
       <p class="text-sm">NORMA, STANDAR, PROSEDUR, DAN KRITERIA (NSPK)</p>
       <p class="text-xs text-slate-300">Bidang Pengembangan Kawasan Strategis</p>
-      <div class="w-16 h-1 bg-yellow-400 mx-auto my-2"></div>
+      <div class="w-16 h-1 bg-yellow-400 mx-auto my-3"></div>
       <p class="text-xs italic">Kota Semarang, 26 Mei 2026</p>
     </div>
 
     <form id="formPresensi" class="p-6 space-y-4">
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Nama Lengkap *</label>
-        <input type="text" name="nama" required placeholder="Nama Lengkap" class="w-full p-2 border rounded">
-      </div>
+      <div><label class="block text-sm font-semibold">Nama Lengkap *</label><input type="text" name="nama" required class="w-full p-2 border rounded"></div>
+      <div><label class="block text-sm font-semibold">Gelar Belakang / Jabatan</label><input type="text" name="gelar" class="w-full p-2 border rounded"></div>
+      <div><label class="block text-sm font-semibold">Nomor WhatsApp / HP Aktif *</label><input type="tel" name="nohp" required class="w-full p-2 border rounded"></div>
+      <div><label class="block text-sm font-semibold">Alamat Email *</label><input type="email" name="email" required class="w-full p-2 border rounded"></div>
 
       <div>
-        <label class="block text-sm font-semibold text-slate-700">Gelar / Jabatan</label>
-        <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full p-2 border rounded">
-      </div>
-
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Nomor WhatsApp *</label>
-        <input type="tel" name="nohp" required placeholder="Contoh: 081234567890" class="w-full p-2 border rounded">
-      </div>
-
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Alamat Email *</label>
-        <input type="email" name="email" required placeholder="contoh: example@gmail.com" class="w-full p-2 border rounded">
-      </div>
-
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Wilayah Kerja *</label>
-        <select name="wilayah" required onchange="toggleWilayahLainnya(this.value)" class="w-full p-2 border rounded bg-white">
+        <label class="block text-sm font-semibold">Wilayah Kerja *</label>
+        <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full p-2 border rounded bg-white">
           <option value="" disabled selected>-- Pilih Wilayah Kerja --</option>
-          <optgroup label="Instansi Pusat & Provinsi">
-            <option value="Kementerian PU">Kementerian PU</option>
-            <option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kabupaten">
-            <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kota">
-            <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
+          <optgroup label="Instansi Pusat & Provinsi"><option value="Kementerian PU">Kementerian PU</option><option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option></optgroup>
+          <optgroup label="Pemerintah Kabupaten/Kota">
+             <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
+             <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
           </optgroup>
           <option value="Lainnya">Lainnya</option>
         </select>
       </div>
-
-      <div id="kolomWilayahLainnya" class="hidden">
-        <label class="block text-sm font-semibold text-slate-700">Nama Wilayah Lainnya *</label>
-        <input type="text" name="wilayah_lainnya" id="inputWilayahLainnya" placeholder="Ketik nama wilayah" class="w-full p-2 border rounded">
-      </div>
+      <div id="kolomWilayahLainnya" class="hidden"><input type="text" name="wilayah_lainnya" placeholder="Ketik nama wilayah" class="w-full p-2 border rounded"></div>
 
       <div>
-        <label class="block text-sm font-semibold text-slate-700">Instansi *</label>
-        <select name="instansi" required onchange="toggleInstansiLainnya(this.value)" class="w-full p-2 border rounded bg-white">
+        <label class="block text-sm font-semibold">Instansi *</label>
+        <select name="instansi" required onchange="toggleField(this.value, 'kolomInstansiLainnya')" class="w-full p-2 border rounded bg-white">
           <option value="" disabled selected>-- Pilih Instansi --</option>
-          <option value="Bapperida">Bapperida</option>
-          <option value="Dinas Perkim">Dinas Perkim</option>
-          <option value="Dinas PU">Dinas PU</option>
-          <option value="Lainnya">Lainnya</option>
+          <option value="Bapperida">Bapperida</option><option value="Dinas Perkim">Dinas Perkim</option><option value="Dinas PU">Dinas PU</option><option value="Lainnya">Lainnya</option>
         </select>
       </div>
+      <div id="kolomInstansiLainnya" class="hidden"><input type="text" name="instansi_lainnya" placeholder="Ketik nama instansi" class="w-full p-2 border rounded"></div>
 
-      <div id="kolomInstansiLainnya" class="hidden">
-        <label class="block text-sm font-semibold text-slate-700">Nama Instansi Lainnya *</label>
-        <input type="text" name="instansi_lainnya" id="inputInstansiLainnya" placeholder="Ketik nama instansi" class="w-full p-2 border rounded">
-      </div>
-
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Status Kehadiran *</label>
-        <select name="kehadiran" class="w-full p-2 border rounded bg-white">
-          <option value="Hadir">Hadir</option>
-          <option value="Tidak hadir">Tidak hadir</option>
-        </select>
-      </div>
+      <div><label class="block text-sm font-semibold">Status Kehadiran *</label><select name="kehadiran" class="w-full p-2 border rounded bg-white"><option value="Hadir">Hadir</option><option value="Tidak hadir">Tidak hadir</option></select></div>
 
       <button type="submit" id="btnSubmit" class="w-full bg-[#1e3a8a] text-white p-3 rounded font-bold hover:bg-blue-900">Submit</button>
     </form>
-    <div id="outputMessage" class="hidden p-4 text-center"></div>
+    <div id="bottom"></div>
   </div>
 
   <script>
-    function toggleWilayahLainnya(val) {
-      const el = document.getElementById('kolomWilayahLainnya');
-      const input = document.getElementById('inputWilayahLainnya');
-      el.classList.toggle('hidden', val !== 'Lainnya');
-      input.required = (val === 'Lainnya');
+    function toggleField(val, id) {
+      document.getElementById(id).classList.toggle('hidden', val !== 'Lainnya');
     }
-
-    function toggleInstansiLainnya(val) {
-      const el = document.getElementById('kolomInstansiLainnya');
-      const input = document.getElementById('inputInstansiLainnya');
-      el.classList.toggle('hidden', val !== 'Lainnya');
-      input.required = (val === 'Lainnya');
-    }
-
     document.getElementById('formPresensi').addEventListener('submit', function(e) {
       e.preventDefault();
-      // Integrasi fetch Anda tetap menggunakan fungsi handleFormSubmit sebelumnya
-      handleFormSubmit(this);
+      // Panggil fungsi submit Anda di sini
+      alert("Form siap dikirim ke Google Sheets");
     });
   </script>
 </body>
