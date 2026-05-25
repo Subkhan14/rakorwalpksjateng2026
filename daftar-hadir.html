@@ -7,43 +7,38 @@
   <title>Presensi Sosialisasi NSPK Jateng</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Mengunci body agar tidak scroll */
     body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      overflow: hidden;
-      background-color: #f1f5f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden; /* Mencegah scroll halaman utama */
+        background-color: #f1f5f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
     }
-  
-    /* Kontainer utama dengan batasan lebar */
+
     .container-full {
-      width: 100%;
-      max-width: 450px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      background: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      overflow: hidden; /* Mencegah overflow keluar dari box */
+        width: 100%;
+        max-width: 450px; /* Lebar PC tetap 450px, di HP otomatis 100% */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        overflow: hidden;
     }
-  
-    /* Gradasi Header */
+
     .header-gradient { 
-      background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); 
+        background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); 
     }
-  
-    /* Area scroll: mengisi ruang sisa antara header dan bawah */
+
     .scroll-area {
-      flex: 1;
-      overflow-y: auto; /* Scroll hanya di area ini */
-      -webkit-overflow-scrolling: touch;
+        flex: 1;
+        overflow-y: auto; /* Hanya area ini yang bisa di-scroll */
+        -webkit-overflow-scrolling: touch;
     }
-   
 </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
