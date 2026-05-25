@@ -114,25 +114,28 @@
       script.src = url + '?' + params + '&callback=callbackHandler';
       document.body.appendChild(script);
     }
-    function callbackHandler(response) {
-      if (response.status === "success") {
-        document.getElementById("formPresensi").classList.add("hidden");
-        document.getElementById("successMessage").classList.remove("hidden");
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        alert("Terjadi kesalahan, silakan coba lagi.");
-        document.getElementById('btnSubmit').disabled = false;
-        document.getElementById('btnSubmit').innerText = "Submit";
+    // Fungsi ini sekarang lebih aman
+      function callbackHandler(response) {
+  // Cek apakah response ada dan statusnya success
+        if (response && response.status === "success") {
+          document.getElementById("formPresensi").classList.add("hidden");
+          document.getElementById("successMessage").classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+    // Jika tidak ada response (terjadi error JSONP), anggap gagal atau tangani manual
+    alert("Terjadi kendala teknis. Mohon cek kembali data Anda.");
+  }
+}
+
+// Perbaikan fungsi Edit: Jangan memicu callbackHandler
+      function editJawaban() {
+        const urlSheet = "https://docs.google.com/spreadsheets/d/1J1v6l_IITcKcXY_9uT7PJS_bga3GdR1Jr4Jtr2uYKJI/edit";
+        const confirmEdit = confirm("Apakah Anda ingin membuka lembar data untuk melakukan koreksi?");
+        if (confirmEdit) {
+          window.open(urlSheet, '_blank');
+        }
       }
-    }
-    // Fungsi edit jawaban
-    function editJawaban() {
-      const confirmEdit = confirm("Apakah Anda ingin membuka lembar data untuk melakukan koreksi?");
-      if (confirmEdit) {
-    // Ganti URL di bawah dengan link Google Sheet Anda
-    window.open('https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec', '_blank');
-      }
-    }
+    
   </script>
 </body>
 </html>
