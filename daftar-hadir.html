@@ -26,78 +26,58 @@
 </head>
 <body class="text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
 
-  <div id="top-point"></div>
-
   <div id="formContainer" class="max-w-2xl mx-auto bg-white min-h-screen md:min-h-0 md:my-6 md:rounded-xl shadow-md border border-slate-200 flex flex-col">
     
-      <div class="sticky top-0 z-50 shadow-md">
-        <div class="header-gradient p-5 md:p-6 text-center text-white">
-          <h1 class="text-xl md:text-2xl font-extrabold tracking-wide uppercase mb-1">SOSIALISASI</h1>
-          <h2 class="text-sm md:text-base font-semibold tracking-normal uppercase max-w-xl mx-auto text-slate-100">
-            Norma, Standar, Prosedur, dan Kriteria (NSPK)<br>
-            <span class="text-xs md:text-sm font-normal text-slate-300 block mt-0.5 normal-case">Bidang Pengembangan Kawasan Strategis</span>
-          </h2>
-          <div class="w-12 h-0.5 bg-[#FFCB05] mx-auto my-3 rounded-full"></div>
-          <p class="text-xs font-medium tracking-wider text-slate-400 italic">Kota Semarang, 26 Mei 2026</p>
-        </div>
-        <div class="h-1 bg-gradient-to-r from-[#0a2540] via-[#FFCB05] to-[#e2e8f0]"></div>
+    <div class="sticky top-0 z-50 shadow-md">
+      <div class="header-gradient p-5 md:p-6 text-center text-white">
+        <h1 class="text-xl md:text-2xl font-extrabold tracking-wide uppercase mb-1">SOSIALISASI</h1>
+        <h2 class="text-sm md:text-base font-semibold tracking-normal uppercase max-w-xl mx-auto text-slate-100">
+          Norma, Standar, Prosedur, dan Kriteria (NSPK)<br>
+          <span class="text-xs md:text-sm font-normal text-slate-300 block mt-0.5 normal-case">Bidang Pengembangan Kawasan Strategis</span>
+        </h2>
+        <div class="w-12 h-0.5 bg-[#FFCB05] mx-auto my-3 rounded-full"></div>
+        <p class="text-xs font-medium tracking-wider text-slate-400 italic">Kota Semarang, 26 Mei 2026</p>
       </div>
-    
+      <div class="h-1 bg-gradient-to-r from-[#0a2540] via-[#FFCB05] to-[#e2e8f0]"></div>
+    </div>
+
     <form id="formPresensi" class="p-5 md:p-6 space-y-4 flex-grow">
-      
+      <div>
+        <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Nama Lengkap *</label>
+        <input type="text" name="nama" required placeholder="Contoh: Budi Santoso, S.T." class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+      </div>
       <div>
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Gelar / Jabatan</label>
-        <input type="text" name="gelar" 
-               placeholder="Contoh: S.T., M.T. / Staf Teknis" 
-               class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      
       <div>
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Nomor WhatsApp *</label>
-        <input type="tel" name="nohp" required 
-               placeholder="Contoh: 081234567890" 
-               class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        <input type="tel" name="nohp" required placeholder="Contoh: 081234567890" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      
       <div>
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Alamat Email *</label>
-        <input type="email" name="email" placeholder="contoh: example@gmail.com" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-        <input type="email" name="email" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        <input type="email" name="email" required placeholder="Contoh: example@gmail.com" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-
       <div>
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Wilayah Kerja *</label>
-        <select name="wilayah" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] focus:outline-none transition text-sm bg-white">
+        <select name="wilayah" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm bg-white">
           <option value="" disabled selected>-- Pilih Wilayah Kerja --</option>
-          <optgroup label="Instansi Pusat & Provinsi">
-            <option value="Kementerian PU">Kementerian PU</option>
-            <option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kabupaten">
-            <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kota">
-            <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
-          </optgroup>
+          <option value="Kementerian PU">Kementerian PU</option>
+          <option value="Kota Semarang">Kota Semarang</option>
         </select>
       </div>
-
       <div>
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Instansi *</label>
-        <select name="instansi" id="selectInstansi" required onchange="toggleInstansiLainnya(this.value)" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] focus:outline-none transition text-sm bg-white">
+        <select name="instansi" id="selectInstansi" required onchange="toggleInstansiLainnya(this.value)" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm bg-white">
           <option value="" disabled selected>-- Pilih Instansi --</option>
           <option value="Bapperida">Bapperida</option>
-          <option value="Dinas Perkim">Dinas Perkim</option>
-          <option value="Dinas PU">Dinas PU</option>
           <option value="Lainnya">Lainnya</option>
         </select>
       </div>
-
       <div id="kolomLainnya" class="hidden">
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Nama Instansi Lainnya *</label>
-        <input type="text" name="instansi_lainnya" id="inputLainnya" placeholder="Ketik nama dinas / instansi Anda" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] focus:outline-none text-sm">
+        <input type="text" name="instansi_lainnya" id="inputLainnya" placeholder="Ketik nama instansi Anda" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      
       <div>
         <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1">Status Kehadiran *</label>
         <select name="kehadiran" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm bg-white">
@@ -110,62 +90,42 @@
     <div id="outputMessage" class="hidden m-5 p-4 rounded-md text-sm font-medium text-center"></div>
   </div>
 
-    <script>
-    // 1. Fungsi pengiriman data
+  <script>
     async function handleFormSubmit(formObject) {
       var btn = document.getElementById('btnSubmit');
       var container = document.getElementById('formContainer');
-      
       btn.disabled = true;
       btn.innerText = "Memproses...";
-  
       const formData = new URLSearchParams(new FormData(formObject));
-  
+
       try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbynx4Sppg_xvj_-QlJwGBlFIIS9UKucG5Cih2as1upgrL1ErSbCspFaFRFjr5pyTdHQ/exec", {
           method: "POST",
           body: formData
         });
-  
-        if (!response.ok) throw new Error("Gagal terhubung ke server.");
-  
-        const textRes = await response.text();
-        const result = JSON.parse(textRes);
-  
+        const result = await response.json();
         if (result.status === "success") {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          container.innerHTML = `
-            <div class="p-8 text-center space-y-4">
-              <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
-              <h2 class="text-xl font-bold text-slate-800">Data berhasil disimpan!</h2>
-              <button onclick="window.location.reload();" class="mt-4 px-6 py-2 bg-[#1e3a8a] text-white rounded-md">Isi Kembali</button>
-            </div>
-          `;
+          container.innerHTML = `<div class="p-10 text-center text-emerald-600 font-bold">Data berhasil disimpan!</div>`;
         } else {
-          throw new Error("Server menolak data.");
+          throw new Error("Gagal menyimpan data.");
         }
       } catch (error) {
-        console.error("Error:", error);
         var msgBox = document.getElementById('outputMessage');
-        msgBox.classList.remove('hidden');
         msgBox.className = "m-5 p-4 rounded-md text-center bg-red-100 text-red-800";
-        msgBox.innerText = "Terjadi kesalahan: " + error.message;
+        msgBox.innerText = error.message;
         btn.disabled = false;
         btn.innerText = "Submit";
       }
     }
-  
-    // 2. Fungsi tambahan
+
     function toggleInstansiLainnya(val) {
       document.getElementById('kolomLainnya').classList.toggle('hidden', val !== 'Lainnya');
     }
-  
-    // 3. EVENT LISTENER (Ini yang menghubungkan form ke fungsi)
+
     document.getElementById('formPresensi').addEventListener('submit', function(e) {
       e.preventDefault();
       handleFormSubmit(this);
     });
   </script>
-  
 </body>
 </html>
