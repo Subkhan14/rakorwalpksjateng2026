@@ -105,35 +105,31 @@
 
   // FUNGSI UTAMA UNTUK MENGIRIM DATA KE GOOGLE SHEET
   function handleFormSubmit(formObject) {
-    var btn = document.getElementById('btnSubmit');
-    btn.disabled = true;
-    btn.innerText = "Mengirim...";
+  var btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  btn.innerText = "Mengirim...";
 
-    // Ganti URL di bawah ini dengan URL Web App Anda (berakhiran /exec)
-    const url = "https://script.google.com/macros/s/AKfycbynx4Sppg_xvj_-QlJwGBlFIIS9UKucG5Cih2as1upgrL1ErSbCspFaFRFjr5pyTdHQ/exec"; 
+  const url = "Uhttps://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
 
-    fetch(url, {
-      method: "POST",
-      body: new FormData(formObject)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === "success") {
-        alert("Data berhasil tersimpan di Spreadsheet!");
-        document.getElementById("formPresensi").reset();
-      } else {
-        alert("Gagal menyimpan data.");
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Terjadi kesalahan jaringan.");
-    })
-    .finally(() => {
-      btn.disabled = false;
-      btn.innerText = "Submit";
-    });
-  }
+  // Gunakan mode: 'no-cors' agar tidak diblokir kebijakan keamanan CORS
+  fetch(url, {
+    method: "POST",
+    mode: 'no-cors', 
+    body: new FormData(formObject)
+  })
+  .then(() => {
+    alert("Data terkirim! (Status tidak dapat diverifikasi).");
+    document.getElementById("formPresensi").reset();
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("Gagal mengirim data. Silakan cek koneksi.");
+  })
+  .finally(() => {
+    btn.disabled = false;
+    btn.innerText = "Submit";
+  });
+}
 </script>
   
 </body>
