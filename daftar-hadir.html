@@ -79,9 +79,13 @@
       <h2 class="text-xl font-bold text-slate-800">Presensi Berhasil!</h2>
       <p class="text-sm text-slate-600">Data Anda telah terekam dalam sistem.</p>
       <div class="pt-4 flex flex-col gap-2">
-        <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">Isi Isian Lain</button>
-        <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">Edit Jawaban Sebelumnya</button>
-      </div>
+        <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">
+          Submit Other Responses
+        </button>
+        
+        <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">
+          Edit Responses
+        </button>
     </div>
     <div id="bottom-point" class="py-5"></div>
   </div>
@@ -121,8 +125,13 @@
         document.getElementById('btnSubmit').innerText = "Submit";
       }
     }
+    // Fungsi edit jawaban
     function editJawaban() {
-      alert("Silakan hubungi admin untuk koreksi data jika diperlukan.");
+      const confirmEdit = confirm("Apakah Anda ingin membuka lembar data untuk melakukan koreksi?");
+      if (confirmEdit) {
+    // Ganti URL di bawah dengan link Google Sheet Anda
+    window.open('https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec', '_blank');
+      }
     }
   </script>
 </body>
