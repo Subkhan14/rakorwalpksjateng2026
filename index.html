@@ -238,17 +238,26 @@
     }
 
     // Fungsi Utama Inisialisasi Halaman saat dimuat
+    // Fungsi Utama Inisialisasi Halaman saat dimuat
     window.onload = function() {
       const savedTheme = localStorage.getItem('selectedPortalTheme') || 'theme-dark-blue';
       changeTheme(savedTheme);
-
+  
       // Sinkronisasi otomatis QR Code berdasarkan link hosting terkini
       var currentUrl = window.location.href;
       var qrImage = document.getElementById('qrCode');
       if (qrImage) {
         qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=" + encodeURIComponent(currentUrl);
       }
-    }; // <-- Tanda kurung penutup diposisikan di sini dengan benar
+  
+      // 1. Memaksa scroll ke atas saat halaman dimuat
+      window.scrollTo(0, 0);
+  
+      // 2. Jika browser mendukung history.scrollRestoration, kita matikan
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    };
 
     // Fungsi Pemicu Aplikasi Zoom (Sudah berdiri sendiri di luar onload)
     function openZoom() {
