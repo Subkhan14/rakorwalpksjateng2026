@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <title>PKS Jawa Tengah</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -63,6 +63,12 @@
     body.theme-dark-grey .dynamic-button:hover { background: rgba(255, 255, 255, 0.12); border-color: #38bdf8; color: #ffffff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
     body.theme-dark-grey .title-gradient { background: linear-gradient(to right, #f8fafc, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     body.theme-dark-grey .text-muted { color: #94a3b8; }
+
+    /* Memaksa elemen untuk tidak mempertahankan state zoom */
+    body, html {
+        touch-action: manipulation;
+        -webkit-text-size-adjust: 100%;
+    }
   </style>
 </head>
 <body class="theme-dark-blue min-h-screen flex flex-col items-center justify-start relative selection:bg-amber-400 selection:text-slate-900 pb-12">
@@ -239,36 +245,30 @@
 
     // Fungsi Utama Inisialisasi Halaman saat dimuat
     // Fungsi Utama Inisialisasi Halaman saat dimuat
-      window.onload = function() {
-      // 1. Reset Tema
-      const savedTheme = localStorage.getItem('selectedPortalTheme') || 'theme-dark-blue';
-      changeTheme(savedTheme);
+    window.onload = function() {
+    // 1. Reset Tema
+    const savedTheme = localStorage.getItem('selectedPortalTheme') || 'theme-dark-blue';
+    changeTheme(savedTheme);
   
-      // 2. Sinkronisasi QR Code
-      var currentUrl = window.location.href;
-      var qrImage = document.getElementById('qrCode');
-      if (qrImage) {
-        qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=" + encodeURIComponent(currentUrl);
-      }
+    // 2. Sinkronisasi QR Code
+    var qrImage = document.getElementById('qrCode');
+    if (qrImage) {
+      qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=" + encodeURIComponent(window.location.href);
+    }
   
-      // 3. FORCE RESET POSISI DAN ZOOM
-      window.scrollTo(0, 0); // Paksa ke atas
-      
-      // Matikan fitur ingat posisi scroll browser
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-  
-      // Paksa browser mereset zoom level ke 100% (1.0)
+    // 3. FORCE RESET (Dilakukan dalam interval singkat untuk memastikan browser merespon)
+    setTimeout(() => {
+      window.scrollTo(0, 0);
       document.body.style.zoom = "1.0";
-      
-      // Tambahan: Pastikan skala meta tidak dibatasi secara kaku tapi tetap terkontrol
-      const meta = document.querySelector('meta[name="viewport"]');
-      if (meta) {
-          meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-      }
-    };
-
+      document.documentElement.style.zoom = "1.0";
+    }, 100);
+  
+    // 4. Matikan restorasi posisi
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+  };  
+    
     // Fungsi Pemicu Aplikasi Zoom (Sudah berdiri sendiri di luar onload)
     function openZoom() {
       const meetingId = "5527126946"; 
