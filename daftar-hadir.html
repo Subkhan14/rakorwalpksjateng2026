@@ -8,7 +8,6 @@
   <style>
     body { background-color: #f4f7fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     .header-gradient { background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); }
-    #formContainer { overflow: visible; }
   </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
@@ -25,117 +24,56 @@
           <span class="text-xs font-normal text-slate-300 normal-case">Bidang Pengembangan Kawasan Strategis</span>
         </h2>
         <div class="w-12 h-0.5 bg-[#FFCB05] mx-auto my-3 rounded-full"></div>
-        <p class="text-xs font-medium text-slate-400 italic">Selasa, 26 Mei 2026</p>
       </div>
-      <div class="h-1 bg-gradient-to-r from-[#0a2540] via-[#FFCB05] to-[#e2e8f0]"></div>
     </div>
 
     <form id="formPresensi" class="p-5 md:p-6 space-y-4" onsubmit="handleFormSubmit(this); return false;">
       <div>
         <label class="block text-sm font-semibold text-slate-700">Nama Lengkap *</label>
-        <input type="text" name="nama" required placeholder="Contoh: Andi Darmawan, S.T." class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Gelar / Jabatan</label>
-        <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        <input type="text" name="nama" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
       <div>
         <label class="block text-sm font-semibold text-slate-700">Nomor WhatsApp *</label>
-        <input type="tel" name="nohp" required placeholder="Contoh: 081234567890" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        <input type="tel" name="nohp" required class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Alamat Email *</label>
-        <input type="email" name="email" required placeholder="Contoh: example@gmail.com" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Wilayah Kerja *</label>
-        <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
-          <option value="" disabled selected>-- Pilih Wilayah Kerja --</option>
-          <optgroup label="Instansi Pusat & Provinsi"><option value="Kementerian PU">Kementerian PU</option><option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option></optgroup>
-          <optgroup label="Pemerintah Kabupaten">
-            <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kota">
-            <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
-          </optgroup>
-          <option value="Lainnya">Lainnya</option>
-        </select>
-      </div>
-      <div id="kolomWilayahLainnya" class="hidden"><input type="text" name="wilayah_lainnya" placeholder="Ketik nama wilayah" class="w-full px-3.5 py-2 border rounded-md text-sm"></div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Instansi *</label>
-        <select name="instansi" required onchange="toggleField(this.value, 'kolomInstansiLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
-          <option value="" disabled selected>-- Pilih Instansi --</option>
-          <option value="Bapperida">Bapperida</option><option value="Dinas Perkim">Dinas Perkim</option><option value="Dinas PU">Dinas PU</option><option value="Lainnya">Lainnya</option>
-        </select>
-      </div>
-      <div id="kolomInstansiLainnya" class="hidden"><input type="text" name="instansi_lainnya" placeholder="Ketik nama instansi" class="w-full px-3.5 py-2 border rounded-md text-sm"></div>
-      <div><label class="block text-sm font-semibold text-slate-700">Status Kehadiran *</label><select name="kehadiran" required class="w-full px-3.5 py-2 border rounded-md text-sm bg-white"><option value="Hadir">Hadir</option></select></div>
       <button type="submit" id="btnSubmit" class="w-full bg-[#1e3a8a] text-white py-2.5 rounded-md font-semibold text-sm">Submit</button>
     </form>
 
     <div id="successMessage" class="hidden p-8 text-center space-y-4">
       <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
       <h2 class="text-xl font-bold text-slate-800">Presensi Berhasil!</h2>
-      <p class="text-sm text-slate-600">Data Anda telah terekam dalam sistem.</p>
       <div class="pt-4 flex flex-col gap-2">
-        <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">
-          Submit Other Responses
-        </button>
-        
-        <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">
-          Edit Responses
-        </button>
+        <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">Input Data Baru</button>
+        <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">Koreksi Data Sebelumnya</button>
+      </div>
     </div>
-    <div id="bottom-point" class="py-5"></div>
-  </div>
-
-  <div class="fixed bottom-5 right-5 flex flex-col space-y-2 z-50">
-    <button onclick="scrollToPoint('top-point')" class="w-10 h-10 bg-[#1e3a8a] text-white rounded-full shadow-lg flex items-center justify-center font-bold">▲</button>
-    <button onclick="scrollToPoint('bottom-point')" class="w-10 h-10 bg-[#0284c7] text-white rounded-full shadow-lg flex items-center justify-center font-bold">▼</button>
   </div>
 
   <script>
-    function scrollToPoint(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-    function toggleField(val, id) { 
-      const el = document.getElementById(id);
-      const input = el.querySelector('input');
-      el.classList.toggle('hidden', val !== 'Lainnya');
-      if (input) input.required = (val === 'Lainnya');
-    }
     function handleFormSubmit(formObject) {
-      var btn = document.getElementById('btnSubmit');
-      btn.disabled = true;
-      btn.innerText = "Mengirim...";
+      document.getElementById('btnSubmit').disabled = true;
+      document.getElementById('btnSubmit').innerText = "Mengirim...";
       const url = "https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
-      const formData = new FormData(formObject);
-      const params = new URLSearchParams(formData).toString();
+      const params = new URLSearchParams(new FormData(formObject)).toString();
       const script = document.createElement('script');
       script.src = url + '?' + params + '&callback=callbackHandler';
       document.body.appendChild(script);
     }
-    // Fungsi ini sekarang lebih aman
-      function callbackHandler(response) {
-  // Cek apakah response ada dan statusnya success
-        if (response && response.status === "success") {
-          document.getElementById("formPresensi").classList.add("hidden");
-          document.getElementById("successMessage").classList.remove("hidden");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-    // Jika tidak ada response (terjadi error JSONP), anggap gagal atau tangani manual
-    alert("Terjadi kendala teknis. Mohon cek kembali data Anda.");
-  }
-}
 
-// Perbaikan fungsi Edit: Jangan memicu callbackHandler
-      function editJawaban() {
-        const urlSheet = "https://docs.google.com/spreadsheets/d/1J1v6l_IITcKcXY_9uT7PJS_bga3GdR1Jr4Jtr2uYKJI/edit";
-        const confirmEdit = confirm("Apakah Anda ingin membuka lembar data untuk melakukan koreksi?");
-        if (confirmEdit) {
-          window.open(urlSheet, '_blank');
-        }
+    function callbackHandler(response) {
+      if (response && response.status === "success") {
+        document.getElementById("formPresensi").classList.add("hidden");
+        document.getElementById("successMessage").classList.remove("hidden");
+      } else {
+        alert("Terjadi kendala teknis.");
+        document.getElementById('btnSubmit').disabled = false;
+        document.getElementById('btnSubmit').innerText = "Submit";
       }
-    
+    }
+
+    function editJawaban() {
+      window.open('https://docs.google.com/spreadsheets/d/1J1v6l_IITcKcXY_9uT7PJS_bga3GdR1Jr4Jtr2uYKJI/edit', '_blank');
+    }
   </script>
 </body>
 </html>
