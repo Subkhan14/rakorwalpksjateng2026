@@ -178,7 +178,7 @@
       var btn = document.getElementById('btnSubmit');
       btn.disabled = true;
       btn.innerText = "Mengirim...";
-      const url = ""; 
+      const url = "https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
       const params = new URLSearchParams(new FormData(formObject)).toString();
       const script = document.createElement('script');
       script.src = url + '?' + params + '&callback=callbackHandler';
