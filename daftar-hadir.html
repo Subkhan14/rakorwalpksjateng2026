@@ -31,38 +31,22 @@
     </div>
 
     <form id="formPresensi" class="p-5 md:p-6 space-y-4" onsubmit="handleFormSubmit(this); return false;">
-    </form>
-    
-      <div id="successMessage" class="hidden p-8 text-center space-y-4">
-        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
-        <h2 class="text-xl font-bold text-slate-800">Presensi Berhasil!</h2>
-        <p class="text-sm text-slate-600">Data Anda telah terekam dalam sistem.</p>
-        <div class="pt-4 flex flex-col gap-2">
-          <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">Isi Isian Lain</button>
-          <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">Edit Jawaban Sebelumnya</button>
-        </div>
-      </div>
-      
       <div>
         <label class="block text-sm font-semibold text-slate-700">Nama Lengkap *</label>
         <input type="text" name="nama" required placeholder="Contoh: Andi Darmawan, S.T." class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      
       <div>
         <label class="block text-sm font-semibold text-slate-700">Gelar / Jabatan</label>
         <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      
       <div>
         <label class="block text-sm font-semibold text-slate-700">Nomor WhatsApp *</label>
         <input type="tel" name="nohp" required placeholder="Contoh: 081234567890" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-      
       <div>
         <label class="block text-sm font-semibold text-slate-700">Alamat Email *</label>
         <input type="email" name="email" required placeholder="Contoh: example@gmail.com" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
       </div>
-  
       <div>
         <label class="block text-sm font-semibold text-slate-700">Wilayah Kerja *</label>
         <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
@@ -78,7 +62,6 @@
         </select>
       </div>
       <div id="kolomWilayahLainnya" class="hidden"><input type="text" name="wilayah_lainnya" placeholder="Ketik nama wilayah" class="w-full px-3.5 py-2 border rounded-md text-sm"></div>
-
       <div>
         <label class="block text-sm font-semibold text-slate-700">Instansi *</label>
         <select name="instansi" required onchange="toggleField(this.value, 'kolomInstansiLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
@@ -87,11 +70,19 @@
         </select>
       </div>
       <div id="kolomInstansiLainnya" class="hidden"><input type="text" name="instansi_lainnya" placeholder="Ketik nama instansi" class="w-full px-3.5 py-2 border rounded-md text-sm"></div>
-
       <div><label class="block text-sm font-semibold text-slate-700">Status Kehadiran *</label><select name="kehadiran" required class="w-full px-3.5 py-2 border rounded-md text-sm bg-white"><option value="Hadir">Hadir</option></select></div>
-
       <button type="submit" id="btnSubmit" class="w-full bg-[#1e3a8a] text-white py-2.5 rounded-md font-semibold text-sm">Submit</button>
     </form>
+
+    <div id="successMessage" class="hidden p-8 text-center space-y-4">
+      <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
+      <h2 class="text-xl font-bold text-slate-800">Presensi Berhasil!</h2>
+      <p class="text-sm text-slate-600">Data Anda telah terekam dalam sistem.</p>
+      <div class="pt-4 flex flex-col gap-2">
+        <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">Isi Isian Lain</button>
+        <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">Edit Jawaban Sebelumnya</button>
+      </div>
+    </div>
     <div id="bottom-point" class="py-5"></div>
   </div>
 
@@ -101,58 +92,38 @@
   </div>
 
   <script>
-  // Fungsi Navigasi
-  function scrollToPoint(id) { 
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); 
-  }
-
-  // Fungsi Toggle untuk input "Lainnya"
-  function toggleField(val, id) { 
-    const el = document.getElementById(id);
-    const input = el.querySelector('input');
-    el.classList.toggle('hidden', val !== 'Lainnya');
-    if (input) input.required = (val === 'Lainnya');
-  }
-
-  // FUNGSI UTAMA UNTUK MENGIRIM DATA KE GOOGLE SHEET
-  function handleFormSubmit(formObject) {
-  var btn = document.getElementById('btnSubmit');
-  btn.disabled = true;
-  btn.innerText = "Mengirim...";
-
-  // URL Web App Anda
-  const url = "https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
-  
-  // Mengubah form data menjadi query string
-  const formData = new FormData(formObject);
-  const params = new URLSearchParams(formData).toString();
-
-  // Membuat script tag untuk JSONP (bypass CORS)
-  const script = document.createElement('script');
-  script.src = url + '?' + params + '&callback=callbackHandler';
-  document.body.appendChild(script);
-}
-
-// Fungsi penangkap respon dari Google
-// Fungsi penangkap respon dari Google
-  function callbackHandler(response) {
-    if (response.status === "success") {
-      // Sembunyikan form, tampilkan pesan sukses
-      document.getElementById("formPresensi").classList.add("hidden");
-      document.getElementById("successMessage").classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      alert("Terjadi kesalahan, silakan coba lagi.");
-      document.getElementById('btnSubmit').disabled = false;
-      document.getElementById('btnSubmit').innerText = "Submit";
+    function scrollToPoint(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+    function toggleField(val, id) { 
+      const el = document.getElementById(id);
+      const input = el.querySelector('input');
+      el.classList.toggle('hidden', val !== 'Lainnya');
+      if (input) input.required = (val === 'Lainnya');
     }
-  }
-  
-  // Fungsi edit (bisa diarahkan ke link spreadsheet atau reload form)
-  function editJawaban() {
+    function handleFormSubmit(formObject) {
+      var btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+      btn.innerText = "Mengirim...";
+      const url = "https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
+      const formData = new FormData(formObject);
+      const params = new URLSearchParams(formData).toString();
+      const script = document.createElement('script');
+      script.src = url + '?' + params + '&callback=callbackHandler';
+      document.body.appendChild(script);
+    }
+    function callbackHandler(response) {
+      if (response.status === "success") {
+        document.getElementById("formPresensi").classList.add("hidden");
+        document.getElementById("successMessage").classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert("Terjadi kesalahan, silakan coba lagi.");
+        document.getElementById('btnSubmit').disabled = false;
+        document.getElementById('btnSubmit').innerText = "Submit";
+      }
+    }
+    function editJawaban() {
       alert("Silakan hubungi admin untuk koreksi data jika diperlukan.");
-  }
-</script>
-  
+    }
+  </script>
 </body>
 </html>
