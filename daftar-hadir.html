@@ -109,26 +109,29 @@
   btn.disabled = true;
   btn.innerText = "Mengirim...";
 
-  const url = "Uhttps://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
+  // URL Web App Anda
+  const url = "https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
+  
+  // Mengubah form data menjadi query string
+  const formData = new FormData(formObject);
+  const params = new URLSearchParams(formData).toString();
 
-  // Gunakan mode: 'no-cors' agar tidak diblokir kebijakan keamanan CORS
-  fetch(url, {
-    method: "POST",
-    mode: 'no-cors', 
-    body: new FormData(formObject)
-  })
-  .then(() => {
-    alert("Data terkirim! (Status tidak dapat diverifikasi).");
+  // Membuat script tag untuk JSONP (bypass CORS)
+  const script = document.createElement('script');
+  script.src = url + '?' + params + '&callback=callbackHandler';
+  document.body.appendChild(script);
+}
+
+// Fungsi penangkap respon dari Google
+function callbackHandler(response) {
+  if (response.status === "success") {
+    alert("Data berhasil tersimpan!");
     document.getElementById("formPresensi").reset();
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    alert("Gagal mengirim data. Silakan cek koneksi.");
-  })
-  .finally(() => {
-    btn.disabled = false;
-    btn.innerText = "Submit";
-  });
+  } else {
+    alert("Terjadi kesalahan.");
+  }
+  document.getElementById('btnSubmit').disabled = false;
+  document.getElementById('btnSubmit').innerText = "Submit";
 }
 </script>
   
