@@ -6,20 +6,46 @@
   <title>Presensi Sosialisasi NSPK Jateng</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #f4f7fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    .header-gradient { background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); }
-    #formContainer { overflow: visible; }
-  </style>
+  body { 
+    background-color: #f4f7fa; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0; 
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+  }
+  .header-gradient { background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); }
+  
+  /* Area utama */
+  .container-full { 
+    max-width: 672px; /* Setara max-w-2xl */
+    margin: 0 auto; 
+    height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    background: white; 
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  /* Area yang bisa di-scroll */
+  .scroll-area { 
+    flex: 1; /* Mengisi sisa ruang yang tersedia */
+    overflow-y: auto; /* KUNCI: Membuat bisa di-scroll */
+    -webkit-overflow-scrolling: touch; /* Agar smooth di HP */
+  }
+</style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
 
   <div id="top-point"></div>
 
-  <div id="formContainer" class="max-w-2xl mx-auto bg-white min-h-screen md:min-h-0 md:my-6 md:rounded-xl shadow-md border border-slate-200 flex flex-col relative">
-    
-    <div class="sticky top-0 z-50 shadow-md">
-      <div class="header-gradient p-5 md:p-6 text-center text-white rounded-t-xl">
-        <h1 class="text-xl md:text-2xl font-extrabold tracking-wide uppercase mb-1">SOSIALISASI</h1>
+  <div class="container-full border border-slate-200">
+    <div class="flex-none shadow-md z-50">
+        <div class="header-gradient p-5 text-center text-white">
+            <img src="https://lh3.googleusercontent.com/d/1rfa98jZz9tGGNiFbtYxmn9ZRQ9DV7D6Z" 
+                 alt="Logo PU" class="w-20 h-20 mx-auto mb-3 bg-white p-2 rounded-full shadow-lg">
+        
+         <h1 class="text-xl md:text-2xl font-extrabold tracking-wide uppercase mb-1">SOSIALISASI</h1>
         <h2 class="text-sm md:text-base font-semibold tracking-normal uppercase max-w-xl mx-auto text-slate-100">
           Norma, Standar, Prosedur, dan Kriteria (NSPK)<br>
           <span class="text-xs font-normal text-slate-300 normal-case">Bidang Pengembangan Kawasan Strategis</span>
@@ -30,38 +56,48 @@
       <div class="h-1 bg-gradient-to-r from-[#0a2540] via-[#FFCB05] to-[#e2e8f0]"></div>
     </div>
 
-    <form id="formPresensi" class="p-5 md:p-6 space-y-4" onsubmit="handleFormSubmit(this); return false;">
-      <div>
+    <div class="scroll-area">
+      <form id="formPresensi" class="p-5 md:p-6 space-y-4" onsubmit="handleFormSubmit(this); return false;">
+        
+        <div>
         <label class="block text-sm font-semibold text-slate-700">Nama Lengkap *</label>
-        <input type="text" name="nama" required placeholder="Contoh: Andi Darmawan, S.T." class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Gelar / Jabatan</label>
-        <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Nomor WhatsApp *</label>
-        <input type="tel" name="nohp" required placeholder="Contoh: 081 xxx xxx xxx" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Alamat Email *</label>
-        <input type="email" name="email" required placeholder="Contoh: example@gmail.com" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
-      </div>
-      <div>
-        <label class="block text-sm font-semibold text-slate-700">Wilayah Kerja *</label>
-        <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
-          <option value="" disabled selected>-- Pilih Wilayah Kerja --</option>
-          <optgroup label="Instansi Pusat & Provinsi">
-            <option value="Kementerian PU">Kementerian PU</option>
-            <option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kabupaten">
+        <input type="text" name="nama" required placeholder="Contoh: Andi Darmawan, S.T." class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7]outline-none text-sm">
+        </div>
+      
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Gelar / Jabatan</label>
+          <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        </div>
+      
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Nomor WhatsApp *</label>
+          <input type="tel" name="nohp" required placeholder="Contoh: 081 xxx xxx xxx" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        </div>
+      
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Alamat Email *</label>
+          <input type="email" name="email" required placeholder="Contoh: example@gmail.com" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+        </div>
+     
+        <div>
+          <label class="block text-sm font-semibold text-slate-700">Wilayah Kerja *</label>
+          <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
+            <option value="" disabled selected>-- Pilih Wilayah Kerja --</option>
+            <optgroup label="Instansi Pusat & Provinsi">
+              <option value="Kementerian PU">Kementerian PU</option>
+              <option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option>
+                
+            </optgroup>
+          
+            <optgroup label="Pemerintah Kabupaten">
             <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
-          </optgroup>
-          <optgroup label="Pemerintah Kota">
-            <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
-          </optgroup>
-          <option value="Lainnya">Lainnya</option>
+            </optgroup>
+          
+            <optgroup label="Pemerintah Kota">
+              <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
+            </optgroup>
+            
+            <option value="Lainnya">Lainnya</option>
         </select>
       </div>
       <div id="kolomWilayahLainnya" class="hidden">
@@ -119,7 +155,7 @@
       var btn = document.getElementById('btnSubmit');
       btn.disabled = true;
       btn.innerText = "Mengirim...";
-      const url = "https://script.google.com/macros/s/AKfycbyG0ll3z9ZPMQqXKpg-YFqqcL8pvaZ0Wc9UFr9_ZUJs32YCBVqqXWEzd8JmkY5Q-kqA/exec"; 
+      const url = ""; 
       const params = new URLSearchParams(new FormData(formObject)).toString();
       const script = document.createElement('script');
       script.src = url + '?' + params + '&callback=callbackHandler';
