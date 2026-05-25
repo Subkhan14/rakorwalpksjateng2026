@@ -239,23 +239,33 @@
 
     // Fungsi Utama Inisialisasi Halaman saat dimuat
     // Fungsi Utama Inisialisasi Halaman saat dimuat
-    window.onload = function() {
+      window.onload = function() {
+      // 1. Reset Tema
       const savedTheme = localStorage.getItem('selectedPortalTheme') || 'theme-dark-blue';
       changeTheme(savedTheme);
   
-      // Sinkronisasi otomatis QR Code berdasarkan link hosting terkini
+      // 2. Sinkronisasi QR Code
       var currentUrl = window.location.href;
       var qrImage = document.getElementById('qrCode');
       if (qrImage) {
         qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=75x75&data=" + encodeURIComponent(currentUrl);
       }
   
-      // 1. Memaksa scroll ke atas saat halaman dimuat
-      window.scrollTo(0, 0);
-  
-      // 2. Jika browser mendukung history.scrollRestoration, kita matikan
+      // 3. FORCE RESET POSISI DAN ZOOM
+      window.scrollTo(0, 0); // Paksa ke atas
+      
+      // Matikan fitur ingat posisi scroll browser
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
+      }
+  
+      // Paksa browser mereset zoom level ke 100% (1.0)
+      document.body.style.zoom = "1.0";
+      
+      // Tambahan: Pastikan skala meta tidak dibatasi secara kaku tapi tetap terkontrol
+      const meta = document.querySelector('meta[name="viewport"]');
+      if (meta) {
+          meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
       }
     };
 
