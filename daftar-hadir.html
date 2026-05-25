@@ -31,6 +31,17 @@
     </div>
 
     <form id="formPresensi" class="p-5 md:p-6 space-y-4" onsubmit="handleFormSubmit(this); return false;">
+    </form>
+    
+      <div id="successMessage" class="hidden p-8 text-center space-y-4">
+        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto">✓</div>
+        <h2 class="text-xl font-bold text-slate-800">Presensi Berhasil!</h2>
+        <p class="text-sm text-slate-600">Data Anda telah terekam dalam sistem.</p>
+        <div class="pt-4 flex flex-col gap-2">
+          <button onclick="window.location.reload()" class="w-full bg-[#1e3a8a] text-white py-2 rounded-md font-semibold text-sm">Isi Isian Lain</button>
+          <button onclick="editJawaban()" class="w-full border border-slate-300 py-2 rounded-md font-semibold text-sm text-slate-600">Edit Jawaban Sebelumnya</button>
+        </div>
+      </div>
       
       <div>
         <label class="block text-sm font-semibold text-slate-700">Nama Lengkap *</label>
@@ -123,16 +134,24 @@
 }
 
 // Fungsi penangkap respon dari Google
-function callbackHandler(response) {
-  if (response.status === "success") {
-    alert("Data berhasil tersimpan!");
-    document.getElementById("formPresensi").reset();
-  } else {
-    alert("Terjadi kesalahan.");
+// Fungsi penangkap respon dari Google
+  function callbackHandler(response) {
+    if (response.status === "success") {
+      // Sembunyikan form, tampilkan pesan sukses
+      document.getElementById("formPresensi").classList.add("hidden");
+      document.getElementById("successMessage").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      alert("Terjadi kesalahan, silakan coba lagi.");
+      document.getElementById('btnSubmit').disabled = false;
+      document.getElementById('btnSubmit').innerText = "Submit";
+    }
   }
-  document.getElementById('btnSubmit').disabled = false;
-  document.getElementById('btnSubmit').innerText = "Submit";
-}
+  
+  // Fungsi edit (bisa diarahkan ke link spreadsheet atau reload form)
+  function editJawaban() {
+      alert("Silakan hubungi admin untuk koreksi data jika diperlukan.");
+  }
 </script>
   
 </body>
