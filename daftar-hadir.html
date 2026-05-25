@@ -92,8 +92,8 @@
     <div id="outputMessage" class="hidden m-5 p-4 rounded-md text-sm font-medium text-center"></div>
   </div>
 
-  <script>
-    // Fungsi yang baru saja diperbaiki
+    <script>
+    // 1. Fungsi pengiriman data
     async function handleFormSubmit(formObject) {
       var btn = document.getElementById('btnSubmit');
       var container = document.getElementById('formContainer');
@@ -137,10 +137,16 @@
       }
     }
   
-    // JANGAN HAPUS fungsi di bawah ini jika masih dipakai
+    // 2. Fungsi tambahan
     function toggleInstansiLainnya(val) {
       document.getElementById('kolomLainnya').classList.toggle('hidden', val !== 'Lainnya');
     }
+  
+    // 3. EVENT LISTENER (Ini yang menghubungkan form ke fungsi)
+    document.getElementById('formPresensi').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleFormSubmit(this);
+    });
   </script>
   
 </body>
