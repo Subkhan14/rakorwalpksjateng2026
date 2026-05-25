@@ -7,36 +7,34 @@
   <title>Presensi Sosialisasi NSPK Jateng</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Atur body agar tidak bisa zoom dan pas dengan layar */
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center; /* Mengetengahkan form */
-    background-color: #f1f5f9;
-    overflow: hidden; /* Mencegah scroll seluruh halaman */
-  }
-  
-  /* Container utama untuk form */
-  .container-full {
-    width: 100%;
-    max-width: 450px; /* Lebar maksimal agar tidak terlalu lebar di tablet/desktop */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    overflow: hidden;
-  }
-  
-  /* Area input yang bisa di-scroll di dalam frame */
-  .scroll-area {
-    flex: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Efek scroll halus di iPhone */
-    padding-bottom: 20px;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Memperbaiki masalah warna header yang putih */
+    .header-gradient { 
+      background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); 
+    }
+
+    .container-full {
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      /* Hilangkan height 100vh agar form bisa mengikuti panjang konten */
+      min-height: 100vh; 
+    }
+
+    .scroll-area {
+      flex: 1;
+    }
    
 </style>
 </head>
