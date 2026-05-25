@@ -1,77 +1,140 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="UTF-8">
+  <base target="_top">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Presensi Sosialisasi NSPK Jateng</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #f4f7fa; font-family: sans-serif; }
-    .header-gradient { background: linear-gradient(180deg, #0a2540 0%, #004b91 100%); }
-    .nav-btn { position: fixed; right: 20px; z-index: 100; cursor: pointer; }
+    body { background-color: #f4f7fa; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .header-gradient { background: linear-gradient(135deg, #0a2540 0%, #004b91 50%, #0284c7 100%); }
+    #formContainer { overflow: visible; }
   </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
 
-  <div class="nav-btn bottom-20 flex flex-col gap-2">
-    <a href="#top" class="bg-blue-900 text-white p-3 rounded-full shadow-lg">▲</a>
-    <a href="#bottom" class="bg-blue-900 text-white p-3 rounded-full shadow-lg">▼</a>
-  </div>
+  <div id="top-point"></div>
 
-  <div id="top" class="max-w-2xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
-    <div class="header-gradient sticky top-0 z-50 p-6 text-center text-white">
-      <h1 class="text-xl font-bold uppercase">SOSIALISASI</h1>
-      <p class="text-sm">NORMA, STANDAR, PROSEDUR, DAN KRITERIA (NSPK)</p>
-      <p class="text-xs text-slate-300">Bidang Pengembangan Kawasan Strategis</p>
-      <div class="w-16 h-1 bg-yellow-400 mx-auto my-3"></div>
-      <p class="text-xs italic">Kota Semarang, 26 Mei 2026</p>
+  <div id="formContainer" class="max-w-2xl mx-auto bg-white min-h-screen md:min-h-0 md:my-6 md:rounded-xl shadow-md border border-slate-200 flex flex-col relative">
+    
+    <div class="sticky top-0 z-50 shadow-md">
+      <div class="header-gradient p-5 md:p-6 text-center text-white rounded-t-xl">
+        <h1 class="text-xl md:text-2xl font-extrabold tracking-wide uppercase mb-1">SOSIALISASI</h1>
+        <h2 class="text-sm md:text-base font-semibold tracking-normal uppercase max-w-xl mx-auto text-slate-100">
+          Norma, Standar, Prosedur, dan Kriteria (NSPK)<br>
+          <span class="text-xs font-normal text-slate-300 normal-case">Bidang Pengembangan Kawasan Strategis</span>
+        </h2>
+        <div class="w-12 h-0.5 bg-[#FFCB05] mx-auto my-3 rounded-full"></div>
+        <p class="text-xs font-medium text-slate-400 italic">Kota Semarang, 26 Mei 2026</p>
+      </div>
+      <div class="h-1 bg-gradient-to-r from-[#0a2540] via-[#FFCB05] to-[#e2e8f0]"></div>
     </div>
 
-    <form id="formPresensi" class="p-6 space-y-4">
-      <div><label class="block text-sm font-semibold">Nama Lengkap *</label><input type="text" name="nama" required class="w-full p-2 border rounded"></div>
-      <div><label class="block text-sm font-semibold">Gelar Belakang / Jabatan</label><input type="text" name="gelar" class="w-full p-2 border rounded"></div>
-      <div><label class="block text-sm font-semibold">Nomor WhatsApp / HP Aktif *</label><input type="tel" name="nohp" required class="w-full p-2 border rounded"></div>
-      <div><label class="block text-sm font-semibold">Alamat Email *</label><input type="email" name="email" required class="w-full p-2 border rounded"></div>
-
+    <form id="formPresensi" class="p-5 md:p-6 space-y-4" onsubmit="handleFormSubmit(this); return false;">
+      
       <div>
-        <label class="block text-sm font-semibold">Wilayah Kerja *</label>
-        <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full p-2 border rounded bg-white">
+        <label class="block text-sm font-semibold text-slate-700">Nama Lengkap *</label>
+        <input type="text" name="nama" required placeholder="Contoh: Andi Darmawan, S.T." class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+      </div>
+      
+      <div>
+        <label class="block text-sm font-semibold text-slate-700">Gelar / Jabatan</label>
+        <input type="text" name="gelar" placeholder="Contoh: S.T., M.T. / Staf Teknis" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+      </div>
+      
+      <div>
+        <label class="block text-sm font-semibold text-slate-700">Nomor WhatsApp *</label>
+        <input type="tel" name="nohp" required placeholder="Contoh: 081234567890" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+      </div>
+      
+      <div>
+        <label class="block text-sm font-semibold text-slate-700">Alamat Email *</label>
+        <input type="email" name="email" required placeholder="Contoh: example@gmail.com" class="w-full px-3.5 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-[#0284c7] outline-none text-sm">
+      </div>
+  
+      <div>
+        <label class="block text-sm font-semibold text-slate-700">Wilayah Kerja *</label>
+        <select name="wilayah" required onchange="toggleField(this.value, 'kolomWilayahLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
           <option value="" disabled selected>-- Pilih Wilayah Kerja --</option>
           <optgroup label="Instansi Pusat & Provinsi"><option value="Kementerian PU">Kementerian PU</option><option value="Provinsi Jawa Tengah">Provinsi Jawa Tengah</option></optgroup>
-          <optgroup label="Pemerintah Kabupaten/Kota">
-             <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
-             <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
+          <optgroup label="Pemerintah Kabupaten">
+            <option value="Kab. Cilacap">Kab. Cilacap</option><option value="Kab. Banyumas">Kab. Banyumas</option><option value="Kab. Purbalingga">Kab. Purbalingga</option><option value="Kab. Banjarnegara">Kab. Banjarnegara</option><option value="Kab. Kebumen">Kab. Kebumen</option><option value="Kab. Purworejo">Kab. Purworejo</option><option value="Kab. Wonosobo">Kab. Wonosobo</option><option value="Kab. Magelang">Kab. Magelang</option><option value="Kab. Boyolali">Kab. Boyolali</option><option value="Kab. Klaten">Kab. Klaten</option><option value="Kab. Sukoharjo">Kab. Sukoharjo</option><option value="Kab. Wonogiri">Kab. Wonogiri</option><option value="Kab. Karanganyar">Kab. Karanganyar</option><option value="Kab. Sragen">Kab. Sragen</option><option value="Kab. Grobogan">Kab. Grobogan</option><option value="Kab. Blora">Kab. Blora</option><option value="Kab. Rembang">Kab. Rembang</option><option value="Kab. Pati">Kab. Pati</option><option value="Kab. Kudus">Kab. Kudus</option><option value="Kab. Jepara">Kab. Jepara</option><option value="Kab. Demak">Kab. Demak</option><option value="Kab. Semarang">Kab. Semarang</option><option value="Kab. Temanggung">Kab. Temanggung</option><option value="Kab. Kendal">Kab. Kendal</option><option value="Kab. Batang">Kab. Batang</option><option value="Kab. Pekalongan">Kab. Pekalongan</option><option value="Kab. Pemalang">Kab. Pemalang</option><option value="Kab. Tegal">Kab. Tegal</option><option value="Kab. Brebes">Kab. Brebes</option>
+          </optgroup>
+          <optgroup label="Pemerintah Kota">
+            <option value="Kota Magelang">Kota Magelang</option><option value="Kota Surakarta">Kota Surakarta</option><option value="Kota Salatiga">Kota Salatiga</option><option value="Kota Semarang">Kota Semarang</option><option value="Kota Pekalongan">Kota Pekalongan</option><option value="Kota Tegal">Kota Tegal</option>
           </optgroup>
           <option value="Lainnya">Lainnya</option>
         </select>
       </div>
-      <div id="kolomWilayahLainnya" class="hidden"><input type="text" name="wilayah_lainnya" placeholder="Ketik nama wilayah" class="w-full p-2 border rounded"></div>
+      <div id="kolomWilayahLainnya" class="hidden"><input type="text" name="wilayah_lainnya" placeholder="Ketik nama wilayah" class="w-full px-3.5 py-2 border rounded-md text-sm"></div>
 
       <div>
-        <label class="block text-sm font-semibold">Instansi *</label>
-        <select name="instansi" required onchange="toggleField(this.value, 'kolomInstansiLainnya')" class="w-full p-2 border rounded bg-white">
+        <label class="block text-sm font-semibold text-slate-700">Instansi *</label>
+        <select name="instansi" required onchange="toggleField(this.value, 'kolomInstansiLainnya')" class="w-full px-3.5 py-2 border rounded-md text-sm bg-white">
           <option value="" disabled selected>-- Pilih Instansi --</option>
           <option value="Bapperida">Bapperida</option><option value="Dinas Perkim">Dinas Perkim</option><option value="Dinas PU">Dinas PU</option><option value="Lainnya">Lainnya</option>
         </select>
       </div>
-      <div id="kolomInstansiLainnya" class="hidden"><input type="text" name="instansi_lainnya" placeholder="Ketik nama instansi" class="w-full p-2 border rounded"></div>
+      <div id="kolomInstansiLainnya" class="hidden"><input type="text" name="instansi_lainnya" placeholder="Ketik nama instansi" class="w-full px-3.5 py-2 border rounded-md text-sm"></div>
 
-      <div><label class="block text-sm font-semibold">Status Kehadiran *</label><select name="kehadiran" class="w-full p-2 border rounded bg-white"><option value="Hadir">Hadir</option><option value="Tidak hadir">Tidak hadir</option></select></div>
+      <div><label class="block text-sm font-semibold text-slate-700">Status Kehadiran *</label><select name="kehadiran" required class="w-full px-3.5 py-2 border rounded-md text-sm bg-white"><option value="Hadir">Hadir</option></select></div>
 
-      <button type="submit" id="btnSubmit" class="w-full bg-[#1e3a8a] text-white p-3 rounded font-bold hover:bg-blue-900">Submit</button>
+      <button type="submit" id="btnSubmit" class="w-full bg-[#1e3a8a] text-white py-2.5 rounded-md font-semibold text-sm">Submit</button>
     </form>
-    <div id="bottom"></div>
+    <div id="bottom-point" class="py-5"></div>
+  </div>
+
+  <div class="fixed bottom-5 right-5 flex flex-col space-y-2 z-50">
+    <button onclick="scrollToPoint('top-point')" class="w-10 h-10 bg-[#1e3a8a] text-white rounded-full shadow-lg flex items-center justify-center font-bold">▲</button>
+    <button onclick="scrollToPoint('bottom-point')" class="w-10 h-10 bg-[#0284c7] text-white rounded-full shadow-lg flex items-center justify-center font-bold">▼</button>
   </div>
 
   <script>
-    function toggleField(val, id) {
-      document.getElementById(id).classList.toggle('hidden', val !== 'Lainnya');
-    }
-    document.getElementById('formPresensi').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Panggil fungsi submit Anda di sini
-      alert("Form siap dikirim ke Google Sheets");
+  // Fungsi Navigasi
+  function scrollToPoint(id) { 
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); 
+  }
+
+  // Fungsi Toggle untuk input "Lainnya"
+  function toggleField(val, id) { 
+    const el = document.getElementById(id);
+    const input = el.querySelector('input');
+    el.classList.toggle('hidden', val !== 'Lainnya');
+    if (input) input.required = (val === 'Lainnya');
+  }
+
+  // FUNGSI UTAMA UNTUK MENGIRIM DATA KE GOOGLE SHEET
+  function handleFormSubmit(formObject) {
+    var btn = document.getElementById('btnSubmit');
+    btn.disabled = true;
+    btn.innerText = "Mengirim...";
+
+    // Ganti URL di bawah ini dengan URL Web App Anda (berakhiran /exec)
+    const url = "https://script.google.com/macros/s/AKfycbynx4Sppg_xvj_-QlJwGBlFIIS9UKucG5Cih2as1upgrL1ErSbCspFaFRFjr5pyTdHQ/exec"; 
+
+    fetch(url, {
+      method: "POST",
+      body: new FormData(formObject)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "success") {
+        alert("Data berhasil tersimpan di Spreadsheet!");
+        document.getElementById("formPresensi").reset();
+      } else {
+        alert("Gagal menyimpan data.");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Terjadi kesalahan jaringan.");
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.innerText = "Submit";
     });
-  </script>
+  }
+</script>
+  
 </body>
 </html>
